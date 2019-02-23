@@ -34,6 +34,7 @@ all: Direction.class \
 	 Surface.class \
 	 CoordinatesValue.class \
 	 Position.class \
+	 Rover.class \
 	 RoverDriver.class \
 
 # Rules for executing the application
@@ -45,7 +46,7 @@ doc:
 	javadoc -d $(DOCDIR) $(SRCDIR)/*.java $(SRCDIR)/ValueObjects/*.java $(SRCDIR)/Rover/*.java $(SRCDIR)/RoverTypes/*.java $(TESTDIR)/TestUtils.java
 
 # Rules for unit testing
-test_classes: all TestCoordinatesValue.class TestPosition.class TestSurface.class TestUtils.class TestSuite.class
+test_classes: all TestCoordinatesValue.class TestPosition.class TestSurface.class TestRover.class TestUtils.class TestSuite.class
 
 test: test_classes
 	java -ea -cp $(BINDIR):$(JUNIT) org.junit.runner.JUnitCore TestSuite
