@@ -48,6 +48,18 @@ public class TestSurface {
 		}
     }
 
+    @Test
+    public void equals_ValidInput_SurfacesEqual() {
+        // Arrange
+        Surface surface = make_SurfaceWithGivenDimensions(xDimension, yDimension);
+        Surface otherSurface = make_SurfaceWithGivenDimensions(xDimension, yDimension);
+
+        // Action
+
+        // Assert
+        assertTrue(surface.equals(otherSurface));
+    }
+
     // Factory Methods
     private Surface make_SurfaceWithGivenDimensions(int xDimension,int yDimension){
         return Surface.From(xDimension, yDimension);

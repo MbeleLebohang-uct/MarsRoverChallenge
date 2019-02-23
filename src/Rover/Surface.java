@@ -24,8 +24,26 @@ public class Surface {
         return new Surface(xDimension, yDimension);
     }
 
+    /**
+     * @return the xDimension
+     */
+    public int getxDimension() {
+        return xDimension;
+    }
+
+    /**
+     * @return the yDimension
+     */
+    public int getyDimension() {
+        return yDimension;
+    }
+
     @Override
     public String toString() {
         return "["+ "xDimension: " + xDimension + " - yDimension: " + yDimension +"]";
+    }
+
+    public boolean equals(Surface surface) {
+        return xDimension == surface.getxDimension()  && yDimension == surface.getyDimension();
     }
 }

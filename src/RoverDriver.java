@@ -11,13 +11,10 @@ import Rover.*;
 public class RoverDriver {
     public static void main(String args[]) {
         System.out.println("Mars Rover Challenge by NEXT45");
-        Position pos = Position.From(1, 2, Direction.E);
-        System.out.println(pos.toString());
-        Position newPos = pos.Move(Command.M);
-        System.out.println(newPos.toString());
-        newPos = pos.Move(Command.L);
-        System.out.println(newPos.toString());
-        newPos = pos.Move(Command.R);
-        System.out.println(newPos.toString());
+        String commandString = "MMLMRMMRRMML";
+
+        for(String command : commandString.split("")){
+            System.out.println(command);
+        }
     }
 }

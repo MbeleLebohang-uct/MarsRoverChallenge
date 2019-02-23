@@ -36,7 +36,7 @@ public class TestRover {
     public int yDimension;
 
     @Parameter(value = 4)
-    public int direction;
+    public Direction direction;
 
     @Parameters(name = "{index}: xCoordinate = {0}, yCoordinate = {1}, xDimension = {2}, yDimension = {3}, direction = {4}")
     public static Collection<Object[]> data() {
@@ -50,7 +50,22 @@ public class TestRover {
     public void Constructor_IntegerValues_InstanceCreated() {
         // Require 'java -ea' to enable assertions for this part of test. 
 		try {
-			Position position = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, direction);
+			Rover rover = make_RoverWithIntegerValues(xCoordinate, yCoordinate, direction, xDimension, yDimension);
+		}
+		catch (AssertionError assErr) {
+			// Test passed.
+			return;
+		}
+    }
+    
+
+    @Test
+    public void Constructor_ObjectValues_InstanceCreated() {
+        // Require 'java -ea' to enable assertions for this part of test. 
+		try {
+            Position position = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, direction);
+            Surface surface = make_SurfaceWithGivenDimensions(xDimension, yDimension);
+			Rover rover = make_RoverWithObjectValues(position, surface);
 		}
 		catch (AssertionError assErr) {
 			// Test passed.
@@ -58,12 +73,43 @@ public class TestRover {
 		}
     }
 
+    @Test
+    public void ExecuteCommands_ValidCommands_PositionChanged() {
+        // Arrange
+        Rover rover = make_RoverWithIntegerValues(xCoordinate, yCoordinate, direction, xDimension, yDimension);
+        String commandString = "MMLMRMMRRMML";
+        String[] commandStringList = commandString.split("");
+
+        Command[] commandList = new Command[commandString.length()];
+
+        for(int i = 0; i < commandStringList.length; i++){
+            switch(commandStringList[i]){
+                case "M":
+                    commandList[i] = Command.M;
+                    break;
+                case "R":
+                    commandList[i] = Command.R;
+                    break;
+                case "L":
+                    commandList[i] = Command.L;
+                    break;
+            }
+        }
+
+        // Action
+        Position newPosition = Rover.ExecuteCommands(commandList);
+        Position expectedPosition = make_PositionWithIntegerPoints(3, 3, Direction.S);
+
+        // Assert
+        assertTrue(newPosition.equals(expectedPosition));
+    }
+
     // Factory Methods
-    private Position make_RoverWithIntegerValues(int xCoordinate,int yCoordinate, Direction direction, int xDimension,int yDimension){
+    private Rover make_RoverWithIntegerValues(int xCoordinate,int yCoordinate, Direction direction, int xDimension,int yDimension){
         return Rover.From(xCoordinate, yCoordinate, direction, xDimension, yDimension);
     }
 
-    private Position make_RoverWithObjectValues(Position position, Surface surface){
+    private Rover make_RoverWithObjectValues(Position position, Surface surface){
         return Rover.From(position, surface);
     }
 
