@@ -66,6 +66,51 @@ public class TestPosition {
 		}
     }
 
+    @Test
+    public void Move_CommandM_MovedToNewPosition() {
+        // Arrange
+        Position currentPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, direction);
+        Command command = Command.M;
+
+        // Action
+        Position newPosition = currentPosition.Move(command);
+        Position expectedPosition = make_PositionWithIntegerPoints(xCoordinate + 1, yCoordinate, direction);
+
+        // Assert
+        assertTrue(!newPosition.equals(currentPosition));
+        assertTrue(newPosition.equals(expectedPosition));
+    }
+
+    @Test
+    public void Move_CommandL_PositionCHangedDirection() {
+        // Arrange
+        Position currentPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, direction);
+        Command command = Command.L;
+
+        // Action
+        Position newPosition = currentPosition.Move(command);
+        Position expectedPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, Direction.S);
+
+        // Assert
+        assertTrue(!newPosition.equals(currentPosition));
+        assertTrue(newPosition.equals(expectedPosition));
+    }
+
+    @Test
+    public void Move_CommandR_PositionCHangedDirection() {
+        // Arrange
+        Position currentPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, direction);
+        Command command = Command.R;
+
+        // Action
+        Position newPosition = currentPosition.Move(command);
+        Position expectedPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, Direction.N);
+
+        // Assert
+        assertTrue(!newPosition.equals(currentPosition));
+        assertTrue(newPosition.equals(expectedPosition));
+    }
+
     // Factory Methods
     private Position make_PositionWithIntegerPoints(int xCoordinate,int yCoordinate, Direction direction){
         return Position.From(xCoordinate, yCoordinate, direction);

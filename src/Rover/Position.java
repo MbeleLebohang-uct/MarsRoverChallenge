@@ -34,4 +34,37 @@ import RoverTypes.*;
     public static Position From(CoordinatesValue coordinatesValue, Direction direction){
         return new Position(coordinatesValue, direction);
     }
+
+    /**
+     * Move from the current position to a new position based on the given command
+     * @return new Position after moving
+     */
+    public Position Move(Command command){
+        return null;
+    }
+
+    /**
+     * Get the current coordinates value of this position
+     * @return the coordinatesValue
+     */
+    public CoordinatesValue getCurrentCoordinates() {
+        return coordinatesValue;
+    }
+
+    /**
+     * Get the current direction value of this position
+     * @return the direction
+     */
+    public Direction getCurrentDirection() {
+        return direction;
+    }
+
+    @Override
+    public String toString() {
+        return this.coordinatesValue.toString() + " - " + direction.toString();
+    }
+
+    public boolean equals(Position position) {
+        return coordinatesValue.equals(position.getCurrentCoordinates()) && direction.equals(position.getCurrentDirection());
+    }
  }
