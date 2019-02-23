@@ -36,4 +36,8 @@ public enum Direction{
     public String toString() {
         return value;
     }
+
+    public boolean equals(Direction direction) {
+        return this.value.equals(direction.value);
+    }
 }

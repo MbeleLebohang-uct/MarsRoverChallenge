@@ -13,7 +13,7 @@ import RoverTests.*;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ 
-	TestCoordinatesValue.class, TestPosition.class /* , <next class>, <next class>, ... */
+	TestCoordinatesValue.class, TestPosition.class, TestSurface.class /* , <next class>, <next class>, ... */
 })
 
 public class TestSuite {/* Holder for above annotations. */}

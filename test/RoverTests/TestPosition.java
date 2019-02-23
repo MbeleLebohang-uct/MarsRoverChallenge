@@ -77,10 +77,7 @@ public class TestPosition {
         Position expectedPosition = make_PositionWithIntegerPoints(xCoordinate + 1, yCoordinate, direction);
 
         // Assert
-        // assertTrue(!newPosition.equals(currentPosition));
-        
         assertTrue(newPosition.equals(expectedPosition));
-        assertTrue(true);
     }
 
     @Test
@@ -94,9 +91,7 @@ public class TestPosition {
         Position expectedPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, Direction.N);
 
         // Assert
-        // assertTrue(!newPosition.equals(currentPosition));
         assertTrue(newPosition.equals(expectedPosition));
-        assertTrue(true);
     }
 
     @Test
@@ -110,9 +105,7 @@ public class TestPosition {
         Position expectedPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, Direction.S);
 
         // Assert
-        // assertTrue(!newPosition.equals(currentPosition));
         assertTrue(newPosition.equals(expectedPosition));
-        assertTrue(true);
     }
 
     // Factory Methods

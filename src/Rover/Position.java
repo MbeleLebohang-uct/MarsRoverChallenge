@@ -53,7 +53,7 @@ import RoverTypes.*;
                 RotateLeft();
                 break;
         }
-        return Position.From(coordinatesValue, direction);
+        return Position.From(coordinatesValue.getxCoordinate(), coordinatesValue.getyCoordinate(), direction);
     }
 
     /**

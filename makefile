@@ -31,6 +31,7 @@ vpath %.class $(BINDIR)/ValueObjects:$(BINDIR)/Rover:$(BINDIR)/RoverTypes:$(BIND
 
 all: Direction.class \
 	 Command.class \
+	 Surface.class \
 	 CoordinatesValue.class \
 	 Position.class \
 	 RoverDriver.class \
