@@ -42,4 +42,8 @@ public class CoordinatesValue {
     public String toString(){
         return "(" + this.xCoordinate + ", "+ this.yCoordinate +")";
     }
+
+    public boolean equals(CoordinatesValue coordinatesValue) {
+        return this.xCoordinate == coordinatesValue.getxCoordinate() && this.yCoordinate == coordinatesValue.getyCoordinate();
+    }
 }

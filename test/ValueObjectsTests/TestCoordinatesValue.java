@@ -26,7 +26,7 @@ public class TestCoordinatesValue {
     @Parameter(value = 1)
     public int yCoordinate;
 
-    @Parameters(name = "{index}: testAdd({0}+{1}) = {2}")
+    @Parameters(name = "{index}: xCoordinate = {0}, yCoordinate = {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {1, 2},
@@ -49,32 +49,65 @@ public class TestCoordinatesValue {
 
     @Test
     public void getX_ValidInput_ValueReturned() {
+        // Arrange
 	    CoordinatesValue coordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
         
+        // Action
         int returnedValue = coordinatesValue.getxCoordinate();
         int expectedValue = xCoordinate;
         
+        // Assert
         assertEquals(returnedValue, expectedValue);
     }
 
     @Test
     public void getY_ValidInput_ValueReturned() {
+        // Arrange 
 	    CoordinatesValue coordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
         
+        // Action
         int returnedValue = coordinatesValue.getyCoordinate();
         int expectedValue = yCoordinate;
 
+        // Assert
         assertEquals(returnedValue, expectedValue);
     }
 
     @Test
     public void toString_ValidInput_CoordinatesStringCreated() {
+        // Arrange
 	    CoordinatesValue coordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
 
+        // Action
         String returnedValue = coordinatesValue.toString();
         String expectedValue = "(" + xCoordinate + ", " + yCoordinate + ")";
 
+        // Assert
         assertEquals(returnedValue, expectedValue);
+    }
+
+    @Test
+    public void equals_ValidInput_CoordinatesEqual() {
+        // Arrange
+	    CoordinatesValue coordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
+	    CoordinatesValue otherCoordinatesValue = make_CoordinatesValue(2, 7);
+
+        // Action
+
+        // Assert
+        assertTrue(!coordinatesValue.equals(otherCoordinatesValue));
+    }
+
+    @Test
+    public void equals_ValidInput_CoordinatesNotEqual() {
+        // Arrange
+	    CoordinatesValue coordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
+	    CoordinatesValue otherCoordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
+
+        // Action
+
+        // Assert
+        assertTrue(coordinatesValue.equals(otherCoordinatesValue));
     }
 
     // Factory Methods
