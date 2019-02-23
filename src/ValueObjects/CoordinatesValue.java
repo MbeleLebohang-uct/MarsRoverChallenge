@@ -11,7 +11,7 @@ public class CoordinatesValue {
     private final int xCoordinate;
     private final int yCoordinate;
 
-    public CoordinatesValue(int xCoordinate, int yCoordinate) {
+    private CoordinatesValue(int xCoordinate, int yCoordinate) {
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
     }
