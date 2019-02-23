@@ -1,6 +1,7 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import ValueObjectsTests.*;
+import RoverTests.*;
 
 /**
  * Test class agregator.
@@ -12,7 +13,7 @@ import ValueObjectsTests.*;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ 
-	TestCoordinatesValue.class /* , <next class>, <next class>, ... */
+	TestCoordinatesValue.class, TestPosition.class /* , <next class>, <next class>, ... */
 })
 
 public class TestSuite {/* Holder for above annotations. */}

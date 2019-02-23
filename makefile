@@ -18,8 +18,8 @@ TOOLS = $(LIB)/tools
 JAVAC = javac
 JFLAGS = -g -d $(BINDIR) -cp $(BINDIR):$(JUNIT)
 
-vpath %.java $(SRCDIR)/ValueObjects:$(SRCDIR)/RoverTypes:$(SRCDIR):$(TESTDIR)/ValueObjectsTests:$(TESTDIR)
-vpath %.class $(BINDIR)/ValueObjects:$(BINDIR)/RoverTypes:$(BINDIR)
+vpath %.java $(SRCDIR)/ValueObjects:$(SRCDIR)/Rover:$(SRCDIR)/RoverTypes:$(SRCDIR):$(TESTDIR)/ValueObjectsTests:$(TESTDIR)/RoverTests:$(TESTDIR)
+vpath %.class $(BINDIR)/ValueObjects:$(BINDIR)/Rover:$(BINDIR)/RoverTypes:$(BINDIR)
 
 # define general build rule for java sources
 .SUFFIXES:  .java  .class
@@ -30,7 +30,9 @@ vpath %.class $(BINDIR)/ValueObjects:$(BINDIR)/RoverTypes:$(BINDIR)
 #default rule - will be invoked by make
 
 all: Direction.class \
+	 Command.class \
 	 CoordinatesValue.class \
+	 Position.class \
 	 RoverDriver.class \
 
 # Rules for executing the application
@@ -39,10 +41,10 @@ run:
 				
 # Rules for generating documentation
 doc:
-	javadoc -d $(DOCDIR) $(SRCDIR)/*.java $(SRCDIR)/ValueObjects/*.java $(SRCDIR)/RoverTypes/*.java $(TESTDIR)/TestUtils.java
+	javadoc -d $(DOCDIR) $(SRCDIR)/*.java $(SRCDIR)/ValueObjects/*.java $(SRCDIR)/Rover/*.java $(SRCDIR)/RoverTypes/*.java $(TESTDIR)/TestUtils.java
 
 # Rules for unit testing
-test_classes: all TestCoordinatesValue.class TestUtils.class TestSuite.class
+test_classes: all TestCoordinatesValue.class TestPosition.class TestUtils.class TestSuite.class
 
 test: test_classes
 	java -ea -cp $(BINDIR):$(JUNIT) org.junit.runner.JUnitCore TestSuite

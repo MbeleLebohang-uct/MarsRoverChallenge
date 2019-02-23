@@ -40,7 +40,20 @@ import RoverTypes.*;
      * @return new Position after moving
      */
     public Position Move(Command command){
-        return null;
+        switch(command){
+            case M:
+                MoveForward();
+                break;
+
+            case R:
+                RotateRight();
+                break;
+
+            case L:
+                RotateLeft();
+                break;
+        }
+        return Position.From(coordinatesValue, direction);
     }
 
     /**
@@ -66,5 +79,75 @@ import RoverTypes.*;
 
     public boolean equals(Position position) {
         return coordinatesValue.equals(position.getCurrentCoordinates()) && direction.equals(position.getCurrentDirection());
+    }
+
+    /**
+     * Helper method to move forward based on the current direction in which the Rover is facing
+     * @return Void
+     */
+    private void MoveForward(){
+        switch (direction){
+            case S:
+                coordinatesValue = CoordinatesValue.From(coordinatesValue.getxCoordinate(), coordinatesValue.getyCoordinate() - 1);
+                break;
+
+            case N:
+                coordinatesValue = CoordinatesValue.From(coordinatesValue.getxCoordinate(), coordinatesValue.getyCoordinate() + 1);
+                break;
+            
+            case E:
+                coordinatesValue = CoordinatesValue.From(coordinatesValue.getxCoordinate() + 1, coordinatesValue.getyCoordinate());
+                break;
+            case W:
+                coordinatesValue = CoordinatesValue.From(coordinatesValue.getxCoordinate() - 1, coordinatesValue.getyCoordinate());
+                break;
+        }
+    }
+
+    /**
+     * Helper method to rotate 90 degrees to the right
+     * @return Void
+     */
+    private void RotateRight(){
+        switch (direction){
+            case S:
+                direction = Direction.W;
+                break;
+
+            case N:
+                direction = Direction.E;
+                break;
+            
+            case E:
+                direction = Direction.S;
+                break;
+            case W:
+                direction = Direction.N;
+                break;
+        }
+    }
+
+    /**
+     * Helper method to rotate 90 degrees to the left
+     * @return Void
+     */
+    private void RotateLeft(){
+        switch (direction){
+            case S:
+                direction = Direction.E;
+                break;
+
+            case N:
+                direction = Direction.W;
+                break;
+            
+            case E:
+                direction = Direction.N;
+                break;
+
+            case W:
+                direction = Direction.S;
+                break;
+        }
     }
  }
