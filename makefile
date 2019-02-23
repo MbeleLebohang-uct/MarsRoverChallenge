@@ -18,8 +18,8 @@ TOOLS = $(LIB)/tools
 JAVAC = javac
 JFLAGS = -g -d $(BINDIR) -cp $(BINDIR):$(JUNIT)
 
-vpath %.java $(SRCDIR):$(TESTDIR)
-vpath %.class $(BINDIR)
+vpath %.java $(SRCDIR)/ValueObjects:$(SRCDIR):$(TESTDIR)/ValueObjectsTests:$(TESTDIR)
+vpath %.class $(BINDIR)/ValueObjects:$(BINDIR)
 
 # define general build rule for java sources
 .SUFFIXES:  .java  .class
@@ -29,7 +29,8 @@ vpath %.class $(BINDIR)
 
 #default rule - will be invoked by make
 
-all: RoverDriver.class \
+all: CoordinatesValue.class \
+	 RoverDriver.class \
 
 # Rules for executing the application
 run:
@@ -40,7 +41,7 @@ doc:
 	javadoc -d $(DOCDIR) $(SRCDIR)/*.java $(TESTDIR)/TestUtils.java
 
 # Rules for unit testing
-test_classes: all TestUtils.class TestSuite.class
+test_classes: all TestCoordinatesValue.class TestUtils.class TestSuite.class
 
 test: test_classes
 	java -ea -cp $(BINDIR):$(JUNIT) org.junit.runner.JUnitCore TestSuite
@@ -53,7 +54,8 @@ report: jacoco.exec
 	java -cp $(BINDIR):$(CLI):$(JACOCO):$(ASM):$(TOOLS) Report --reporttype html .
 
 clean:
-	@rm -f  $(BINDIR)/*.class
+	@rm -f $(BINDIR)/*.class
+	@rm -f $(BINDIR)/*/*.class
 	@rm -f jacoco.exec *.xml *.csv
 	@rm -Rf coveragereport
 	@rm -Rf doc
