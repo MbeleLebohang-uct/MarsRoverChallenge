@@ -110,6 +110,62 @@ public class TestCoordinatesValue {
         assertTrue(coordinatesValue.equals(otherCoordinatesValue));
     }
 
+    @Test
+    public void incrementX_ValidInput_xCoordinatesIncremented() {
+        // Arrange
+	    CoordinatesValue coordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
+
+        // Action
+        int newXCoordinate = coordinatesValue.IncrementXCoordinate();
+        int expectedXCoordinate = xCoordinate + 1;
+
+        // Assert
+        assertEquals(newXCoordinate, expectedXCoordinate);
+        assertEquals(coordinatesValue.getxCoordinate(), expectedXCoordinate);
+    }
+
+    @Test
+    public void incrementY_ValidInput_yCoordinatesIncremented() {
+        // Arrange
+	    CoordinatesValue coordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
+
+        // Action
+        int newYCoordinate = coordinatesValue.IncrementYCoordinate();
+        int expectedYCoordinate = yCoordinate + 1;
+
+        // Assert
+        assertEquals(newYCoordinate, expectedYCoordinate);
+        assertEquals(coordinatesValue.getyCoordinate(), expectedYCoordinate);
+    }
+
+    @Test
+    public void decrementX_ValidInput_xCoordinatesIncremented() {
+        // Arrange
+	    CoordinatesValue coordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
+
+        // Action
+        int newXCoordinate = coordinatesValue.IncrementXCoordinate();
+        int expectedXCoordinate = xCoordinate - 1;
+
+        // Assert
+        assertEquals(newXCoordinate, expectedXCoordinate);
+        assertEquals(coordinatesValue.getxCoordinate(), expectedXCoordinate);
+    }
+
+    @Test
+    public void decrementY_ValidInput_yCoordinatesIncremented() {
+        // Arrange
+	    CoordinatesValue coordinatesValue = make_CoordinatesValue(xCoordinate, yCoordinate);
+
+        // Action
+        int newYCoordinate = coordinatesValue.IncrementYCoordinate();
+        int expectedYCoordinate = yCoordinate - 1;
+
+        // Assert
+        assertEquals(newYCoordinate, expectedYCoordinate);
+        assertEquals(coordinatesValue.getyCoordinate(), expectedYCoordinate);
+    }
+
     // Factory Methods
     private CoordinatesValue make_CoordinatesValue(int xCoordinate, int yCoordinate){
         return CoordinatesValue.From(xCoordinate, yCoordinate);
