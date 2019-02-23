@@ -74,7 +74,7 @@ public class TestCoordinatesValue {
         String returnedValue = coordinatesValue.toString();
         String expectedValue = "(" + xCoordinate + ", " + yCoordinate + ")";
 
-        assertEquals(coordinatesValue.getyCoordinate(), yCoordinate);
+        assertEquals(returnedValue, expectedValue);
     }
 
     // Factory Methods
