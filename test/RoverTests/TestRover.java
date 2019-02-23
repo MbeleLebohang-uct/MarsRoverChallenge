@@ -97,9 +97,9 @@ public class TestRover {
         }
 
         // Action
-        Position newPosition = Rover.ExecuteCommands(commandList);
+        Position newPosition = rover.ExecuteCommands(commandList);
         Position expectedPosition = make_PositionWithIntegerPoints(3, 3, Direction.S);
-
+        
         // Assert
         assertTrue(newPosition.equals(expectedPosition));
     }

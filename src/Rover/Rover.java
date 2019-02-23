@@ -38,6 +38,17 @@ public class Rover {
     }
 
     /**
+     * Execute the given list of commands and return the new position after command execution
+     * @return new position
+     */
+    public Position ExecuteCommands(Command[] commands){
+        for(Command command : commands){
+            position.Move(command);
+        }
+        return this.position;
+    }
+
+    /**
      * @return the position
      */
     public Position getCurrentPosition() {
