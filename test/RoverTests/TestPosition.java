@@ -30,7 +30,7 @@ public class TestPosition {
     @Parameter(value = 1)
     public int yCoordinate;
 
-    @Parameter(value = 1)
+    @Parameter(value = 2)
     public Direction direction;
 
     @Parameters(name = "{index}: xCoordinate = {0}, yCoordinate = {1}, direction = {2}")
