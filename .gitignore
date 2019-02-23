@@ -1,0 +1,11 @@
+# bin 
+bin/
+
+# Documentation folder
+doc/
+
+# Coverage report folder
+coveragereport/
+
+# jacoco file
+jacoco.exec
