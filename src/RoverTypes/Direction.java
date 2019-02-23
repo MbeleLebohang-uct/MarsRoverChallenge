@@ -9,8 +9,31 @@ package RoverTypes;
  * Enumerator that defines 4 possible directions of a Rover
  */
 public enum Direction{
-    N,
-    S,
-    E,
-    W
+    /**
+     * North
+     */
+    N("NORTH"),
+    /**
+     * East
+     */
+    E("EAST"),
+    /**
+     * South
+     */
+    S("SOUTH"),
+    /**
+     * West
+     */
+    W("WEST");
+
+    public String value;
+
+    Direction(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }
