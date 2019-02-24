@@ -104,6 +104,130 @@ public class TestRover {
         assertTrue(newPosition.equals(expectedPosition));
     }
 
+    @Test
+    public void ExecuteCommands_LowerBoundryReached_PositionNotChanged() {
+        // Arrange
+        Rover rover = make_RoverWithIntegerValues(xCoordinate, yCoordinate, direction, xDimension, yDimension);
+        String commandString = "RMMM";
+        String[] commandStringList = commandString.split("");
+
+        Command[] commandList = new Command[commandString.length()];
+
+        for(int i = 0; i < commandStringList.length; i++){
+            switch(commandStringList[i]){
+                case "M":
+                    commandList[i] = Command.M;
+                    break;
+                case "R":
+                    commandList[i] = Command.R;
+                    break;
+                case "L":
+                    commandList[i] = Command.L;
+                    break;
+            }
+        }
+
+        // Action
+        Position newPosition = rover.ExecuteCommands(commandList);
+        Position expectedPosition = make_PositionWithIntegerPoints(1, 0, Direction.S);
+        
+        // Assert
+        assertTrue(newPosition.equals(expectedPosition));
+    }
+
+    @Test
+    public void ExecuteCommands_UpperBoundryReached_PositionNotChanged() {
+        // Arrange
+        Rover rover = make_RoverWithIntegerValues(xCoordinate, yCoordinate, direction, xDimension, yDimension);
+        String commandString = "LMMMMMMMM";
+        String[] commandStringList = commandString.split("");
+
+        Command[] commandList = new Command[commandString.length()];
+
+        for(int i = 0; i < commandStringList.length; i++){
+            switch(commandStringList[i]){
+                case "M":
+                    commandList[i] = Command.M;
+                    break;
+                case "R":
+                    commandList[i] = Command.R;
+                    break;
+                case "L":
+                    commandList[i] = Command.L;
+                    break;
+            }
+        }
+
+        // Action
+        Position newPosition = rover.ExecuteCommands(commandList);
+        Position expectedPosition = make_PositionWithIntegerPoints(1, 9, Direction.N);
+        
+        // Assert
+        assertTrue(newPosition.equals(expectedPosition));
+    }
+
+    @Test
+    public void ExecuteCommands_RightBoundryReached_PositionNotChanged() {
+        // Arrange
+        Rover rover = make_RoverWithIntegerValues(xCoordinate, yCoordinate, direction, xDimension, yDimension);
+        String commandString = "MMMMMMM";
+        String[] commandStringList = commandString.split("");
+
+        Command[] commandList = new Command[commandString.length()];
+
+        for(int i = 0; i < commandStringList.length; i++){
+            switch(commandStringList[i]){
+                case "M":
+                    commandList[i] = Command.M;
+                    break;
+                case "R":
+                    commandList[i] = Command.R;
+                    break;
+                case "L":
+                    commandList[i] = Command.L;
+                    break;
+            }
+        }
+
+        // Action
+        Position newPosition = rover.ExecuteCommands(commandList);
+        Position expectedPosition = make_PositionWithIntegerPoints(7, 2, Direction.E);
+        
+        // Assert
+        assertTrue(newPosition.equals(expectedPosition));
+    }
+
+    @Test
+    public void ExecuteCommands_LeftBoundryReached_PositionNotChanged() {
+        // Arrange
+        Rover rover = make_RoverWithIntegerValues(xCoordinate, yCoordinate, direction, xDimension, yDimension);
+        String commandString = "RRMM";
+        String[] commandStringList = commandString.split("");
+
+        Command[] commandList = new Command[commandString.length()];
+
+        for(int i = 0; i < commandStringList.length; i++){
+            switch(commandStringList[i]){
+                case "M":
+                    commandList[i] = Command.M;
+                    break;
+                case "R":
+                    commandList[i] = Command.R;
+                    break;
+                case "L":
+                    commandList[i] = Command.L;
+                    break;
+            }
+        }
+
+        // Action
+        Position newPosition = rover.ExecuteCommands(commandList);
+        Position expectedPosition = make_PositionWithIntegerPoints(0, 2, Direction.W);
+        
+        // Assert
+        assertTrue(newPosition.equals(expectedPosition));
+    }
+
     // Factory Methods
     private Rover make_RoverWithIntegerValues(int xCoordinate,int yCoordinate, Direction direction, int xDimension,int yDimension){
         return Rover.From(xCoordinate, yCoordinate, direction, xDimension, yDimension);

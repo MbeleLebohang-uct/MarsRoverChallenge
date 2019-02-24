@@ -36,13 +36,13 @@ import RoverTypes.*;
     }
 
     /**
-     * Move from the current position to a new position based on the given command
+     * Move from the current position on the given surface to a new position based on the given command
      * @return new Position after moving
      */
-    public Position Move(Command command){
+    public Position Move(Command command, Surface surface){
         switch(command){
             case M:
-                MoveForward();
+                MoveForward(surface);
                 break;
 
             case R:
@@ -82,23 +82,43 @@ import RoverTypes.*;
     }
 
     /**
-     * Helper method to move forward based on the current direction in which the Rover is facing
+     * Helper method to move the rover forward on a given surface based on the current direction in which the Rover is facing
      * @return Void
      */
-    private void MoveForward(){
+    private void MoveForward(Surface surface){
         switch (direction){
             case S:
+                if(coordinatesValue.getyCoordinate() - 1 < 0){
+                    // Idealy this should throw an exception, telling the user that they are moving out of range
+                    System.out.println("SurfaceBoundryException: Lower surface bound reached. Rover cannot move forward. Position{"+this.toString()+"}");
+                    break;
+                }
                 coordinatesValue = CoordinatesValue.From(coordinatesValue.getxCoordinate(), coordinatesValue.getyCoordinate() - 1);
                 break;
 
             case N:
+                if(coordinatesValue.getyCoordinate() + 1 >= surface.getyDimension()){
+                    // Idealy this should throw an exception, telling the user that they are moving out of range
+                    System.out.println("SurfaceBoundryException: Upper surface bound reached. Rover cannot move forward. Position{"+this.toString()+"}");
+                    break;
+                }
                 coordinatesValue = CoordinatesValue.From(coordinatesValue.getxCoordinate(), coordinatesValue.getyCoordinate() + 1);
                 break;
             
             case E:
+                if(coordinatesValue.getxCoordinate() + 1 >= surface.getxDimension()){
+                    // Idealy this should throw an exception, telling the user that they are moving out of range
+                    System.out.println("SurfaceBoundryException: Right surface bound reached. Rover cannot move forward. Position{"+this.toString()+"}");
+                    break;
+                }
                 coordinatesValue = CoordinatesValue.From(coordinatesValue.getxCoordinate() + 1, coordinatesValue.getyCoordinate());
                 break;
             case W:
+                if(coordinatesValue.getxCoordinate() - 1 < 0){
+                    System.out.println("SurfaceBoundryException: Left surface bound reached. Rover cannot move forward. Position{"+this.toString()+"}");
+                    // Idealy this should throw an exception, telling the user that they are moving out of range
+                    break;
+                }
                 coordinatesValue = CoordinatesValue.From(coordinatesValue.getxCoordinate() - 1, coordinatesValue.getyCoordinate());
                 break;
         }

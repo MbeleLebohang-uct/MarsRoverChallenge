@@ -71,9 +71,10 @@ public class TestPosition {
         // Arrange
         Position currentPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, direction);
         Command command = Command.M;
+        Surface surface = make_SurfaceWithGivenDimensions(8, 10);
 
         // Action
-        Position newPosition = currentPosition.Move(command);
+        Position newPosition = currentPosition.Move(command, surface);
         Position expectedPosition = make_PositionWithIntegerPoints(xCoordinate + 1, yCoordinate, direction);
 
         // Assert
@@ -85,9 +86,10 @@ public class TestPosition {
         // Arrange
         Position currentPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, direction);
         Command command = Command.L;
+        Surface surface = make_SurfaceWithGivenDimensions(8, 10);
 
         // Action
-        Position newPosition = currentPosition.Move(command);
+        Position newPosition = currentPosition.Move(command, surface);
         Position expectedPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, Direction.N);
 
         // Assert
@@ -99,9 +101,10 @@ public class TestPosition {
         // Arrange
         Position currentPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, direction);
         Command command = Command.R;
+        Surface surface = make_SurfaceWithGivenDimensions(8, 10);
 
         // Action
-        Position newPosition = currentPosition.Move(command);
+        Position newPosition = currentPosition.Move(command, surface);
         Position expectedPosition = make_PositionWithIntegerPoints(xCoordinate, yCoordinate, Direction.S);
 
         // Assert
@@ -112,11 +115,16 @@ public class TestPosition {
     private Position make_PositionWithIntegerPoints(int xCoordinate,int yCoordinate, Direction direction){
         return Position.From(xCoordinate, yCoordinate, direction);
     }
+
     private Position make_PositionWithCoordinatesValue(CoordinatesValue coordinates, Direction direction){
         return Position.From(coordinates, direction);
     }
 
     private CoordinatesValue make_CoordinatesValue(int xCoordinate, int yCoordinate){
         return CoordinatesValue.From(xCoordinate, yCoordinate);
+    }
+
+    private Surface make_SurfaceWithGivenDimensions(int xDimension,int yDimension){
+        return Surface.From(xDimension, yDimension);
     }
 }
