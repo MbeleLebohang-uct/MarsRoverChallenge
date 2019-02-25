@@ -46,11 +46,11 @@ import RoverTypes.*;
                 break;
 
             case R:
-                RotateRight();
+                Rotate(command);
                 break;
 
             case L:
-                RotateLeft();
+                Rotate(command);
                 break;
         }
         return Position.From(coordinatesValue.getxCoordinate(), coordinatesValue.getyCoordinate(), direction);
@@ -125,48 +125,24 @@ import RoverTypes.*;
     }
 
     /**
-     * Helper method to rotate 90 degrees to the right
+     * Helper method to rotate 90 degrees to the right or left based on the given command
      * @return Void
      */
-    private void RotateRight(){
+    private void Rotate(Command command){
         switch (direction){
             case S:
-                direction = Direction.W;
+                direction = command.equals(Command.R) ? Direction.W : Direction.E;
                 break;
 
             case N:
-                direction = Direction.E;
+                direction = command.equals(Command.R) ? Direction.E : Direction.W;
                 break;
             
             case E:
-                direction = Direction.S;
+                direction = command.equals(Command.R) ? Direction.S : Direction.N;
                 break;
             case W:
-                direction = Direction.N;
-                break;
-        }
-    }
-
-    /**
-     * Helper method to rotate 90 degrees to the left
-     * @return Void
-     */
-    private void RotateLeft(){
-        switch (direction){
-            case S:
-                direction = Direction.E;
-                break;
-
-            case N:
-                direction = Direction.W;
-                break;
-            
-            case E:
-                direction = Direction.N;
-                break;
-
-            case W:
-                direction = Direction.S;
+                direction = command.equals(Command.R) ? Direction.N : Direction.S;
                 break;
         }
     }
