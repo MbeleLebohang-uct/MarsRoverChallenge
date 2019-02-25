@@ -28,15 +28,12 @@ public class RoverDriver {
             if(args[i].charAt(0) == '-'){                
                 switch (args[i]){
                     case "-s":
-                        System.out.println("flag: " + args[i]);
                         surface = decodeSurface(args[i + 1], args[i + 2]);
                         break;
                     case "-c":
-                        System.out.println("flag: " + args[i]);
                         commands = DecodeCommands(args[i + 1]);
                         break;
                     case "-p":
-                        System.out.println("flag: " + args[i]);
                         position = decodePosition(args[i + 1], args[i + 2], args[i + 3]);
                         break;
                     default:

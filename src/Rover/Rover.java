@@ -54,7 +54,6 @@ public class Rover {
      * @return new position
      */
     public Position ExecuteCommands(Command[] commands){
-        System.out.println();
         for(Command command : commands){
             position.Move(command, surface);
             System.out.println("Command: " + command.toString() + " - Position: " + position.toString());
