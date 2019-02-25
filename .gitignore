@@ -2,10 +2,10 @@
 bin/
 
 # Documentation folder
-doc/
+#doc/
 
 # Coverage report folder
-coveragereport/
+#coveragereport/
 
 # jacoco file
-jacoco.exec
+#jacoco.exec

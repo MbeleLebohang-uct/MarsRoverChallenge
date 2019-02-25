@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Rover.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">.</a> &gt; <a href="index.source.html" class="el_package">Rover</a> &gt; <span class="el_source">Rover.java</span></div><h1>Rover.java</h1><pre class="source lang-java linenums">package Rover;
+import RoverTypes.*;
+import ValueObjects.*;
+
+/**
+ * Simple class that represents the Mars Rover. The Rover has an instance variable that
+ * represents the current position and the surface where is moving.
+ * 
+ * @author Mbele Lebohang
+ * @version 24/2/2015
+ */
+public class Rover {
+    private final Surface surface;
+    private Position position;
+
+<span class="fc" id="L16">    private Rover(Position position, Surface surface){</span>
+<span class="fc" id="L17">        this.position = position;</span>
+<span class="fc" id="L18">        this.surface = surface;</span>
+<span class="fc" id="L19">    }</span>
+
+    /**
+     * Create a Rover with the given surface Dimensions and given initial xCoordinate, yCoordinate and direction
+     * @return the Rover
+     */
+    public static Rover From(int xCoordinate, int yCoordinate, Direction direction, int xDimension, int yDimension){
+<span class="fc" id="L26">        Position roverPosition = Position.From(xCoordinate, yCoordinate, direction);</span>
+<span class="fc" id="L27">        Surface roverSurface = Surface.From(xDimension, yDimension);</span>
+
+<span class="fc" id="L29">        return new Rover(roverPosition, roverSurface);</span>
+    }
+
+    /**
+     * Create a Rover with the given surface object and given initial position object
+     * @return the Rover
+     */
+    public static Rover From(Position position, Surface surface){
+<span class="fc" id="L37">        return new Rover(position, surface);</span>
+    }
+
+    /**
+     * Execute the given list of commands and return the new position after command execution
+     * @return new position
+     */
+    public Position ExecuteCommands(Command[] commands){
+<span class="fc" id="L45">        System.out.println();</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        for(Command command : commands){</span>
+<span class="fc" id="L47">            position.Move(command, surface);</span>
+        }
+<span class="fc" id="L49">        return this.position;</span>
+    }
+
+    /**
+     * @return the position
+     */
+    public Position getCurrentPosition() {
+<span class="nc" id="L56">        return position;</span>
+    }
+
+    /**
+     * @return the surface
+     */
+    public Surface getSurface() {
+<span class="nc" id="L63">        return surface;</span>
+    }
+    public boolean equals(Rover rover) {
+<span class="nc bnc" id="L66" title="All 4 branches missed.">        return position.equals(rover.getCurrentPosition()) &amp;&amp; surface.equals(rover.getSurface());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
