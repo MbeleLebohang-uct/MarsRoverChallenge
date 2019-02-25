@@ -11,11 +11,111 @@ import Rover.*;
 <span class="nc" id="L11">public class RoverDriver {</span>
     public static void main(String args[]) {
 <span class="nc" id="L13">        System.out.println(&quot;Mars Rover Challenge by NEXT45&quot;);</span>
-<span class="nc" id="L14">        String commandString = &quot;MMLMRMMRRMML&quot;;</span>
 
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        for(String command : commandString.split(&quot;&quot;)){</span>
-<span class="nc" id="L17">            System.out.println(command);</span>
+<span class="nc" id="L15">        Surface surface = null;</span>
+<span class="nc" id="L16">        Position position = null;</span>
+<span class="nc" id="L17">        Command[] commands = null;</span>
+
+<span class="nc bnc" id="L19" title="All 2 branches missed.">        boolean notEnoughArguments = args.length != 9;</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        if(notEnoughArguments){</span>
+<span class="nc" id="L21">            System.out.println(&quot;IncorrectArguments: The arguments passes are incorrect. Please look at README file.&quot;);</span>
+<span class="nc" id="L22">            System.out.println(&quot;System Exit(0)&quot;);</span>
+<span class="nc" id="L23">            System.exit(0);</span>
         }
-<span class="nc" id="L19">    }</span>
+
+
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        for(int i = 0; i &lt; args.length; i++){</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            if(args[i].charAt(0) == '-'){                </span>
+<span class="nc bnc" id="L29" title="All 14 branches missed.">                switch (args[i]){</span>
+                    case &quot;-s&quot;:
+<span class="nc" id="L31">                        surface = decodeSurface(args[i + 1], args[i + 2]);</span>
+<span class="nc" id="L32">                        break;</span>
+                    case &quot;-c&quot;:
+<span class="nc" id="L34">                        commands = DecodeCommands(args[i + 1]);</span>
+<span class="nc" id="L35">                        break;</span>
+                    case &quot;-p&quot;:
+<span class="nc" id="L37">                        position = decodePosition(args[i + 1], args[i + 2], args[i + 3]);</span>
+<span class="nc" id="L38">                        break;</span>
+                    default:
+<span class="nc" id="L40">                        System.out.println(&quot;UnknownFlagException: The driver does not understand flag &quot;+ args[i] + &quot;. Please look at README file.&quot;);</span>
+<span class="nc" id="L41">                        System.out.println(&quot;System Exit(0)&quot;);</span>
+<span class="nc" id="L42">                        System.exit(0);</span>
+                }
+                continue;
+            }
+        }
+
+<span class="nc" id="L48">        Rover rover = Rover.From(position, surface);</span>
+<span class="nc" id="L49">        System.out.println(&quot;============= Rover Successully Running =============&quot;);</span>
+<span class="nc" id="L50">        System.out.println(&quot;Rover Initial Position: &quot; + rover.getCurrentPosition().toString());</span>
+<span class="nc" id="L51">        System.out.println(&quot;Survey Surface Dimensions: &quot; + rover.getSurface().toString());</span>
+<span class="nc" id="L52">        System.out.println();</span>
+
+<span class="nc" id="L54">        System.out.println(&quot;============= Rover Executing Commands =============&quot;);</span>
+<span class="nc" id="L55">        rover.ExecuteCommands(commands);</span>
+<span class="nc" id="L56">        System.out.println();</span>
+
+<span class="nc" id="L58">        System.out.println(&quot;============= Commands Executed Successfully =============&quot;);</span>
+<span class="nc" id="L59">        System.out.println(&quot;Rover Current Position: &quot; + rover.getCurrentPosition().toString());</span>
+<span class="nc" id="L60">    }</span>
+
+    private static Surface decodeSurface(String xDimension, String yDimension){
+<span class="nc bnc" id="L63" title="All 4 branches missed.">        boolean incorrectSurfaceArguments = xDimension.charAt(0) == '-' || yDimension.charAt(0) == '-';</span>
+<span class="nc bnc" id="L64" title="All 4 branches missed.">        boolean nonIntegerArguments = !isInteger(xDimension) || !isInteger(yDimension);</span>
+
+<span class="nc bnc" id="L66" title="All 4 branches missed.">        if(incorrectSurfaceArguments || nonIntegerArguments){</span>
+<span class="nc" id="L67">            System.out.println(&quot;IncorrectSurfaceArguments: The arguments (&quot; + xDimension +&quot;, &quot;+ yDimension + &quot;) passes are incorrect. Please look at README file.&quot;);</span>
+<span class="nc" id="L68">            System.out.println(&quot;System Exit(0)&quot;);</span>
+<span class="nc" id="L69">            System.exit(0);</span>
+        }
+
+<span class="nc" id="L72">        return Surface.From(Integer.parseInt(xDimension), Integer.parseInt(yDimension));</span>
+    }
+
+    private static Position decodePosition(String xCoordinate, String yCoordinate, String pDirection){
+<span class="nc bnc" id="L76" title="All 4 branches missed.">        boolean incorrectSurfaceArguments = xCoordinate.charAt(0) == '-' || yCoordinate.charAt(0) == '-';</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        boolean nonIntegerArguments = !isInteger(xCoordinate) || !isInteger(yCoordinate);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        boolean unknownDirection = !&quot;NSEW&quot;.contains(pDirection);</span>
+
+<span class="nc bnc" id="L80" title="All 6 branches missed.">        if(incorrectSurfaceArguments || nonIntegerArguments || unknownDirection){</span>
+<span class="nc" id="L81">            System.out.println(&quot;IncorrectPositionArguments: The arguments (&quot; + xCoordinate +&quot;, &quot;+ yCoordinate + &quot;, &quot;+ pDirection +&quot;) passes are incorrect. Please look at README file.&quot;);</span>
+<span class="nc" id="L82">            System.out.println(&quot;System Exit(0)&quot;);</span>
+<span class="nc" id="L83">            System.exit(0);</span>
+        }
+<span class="nc" id="L85">        Direction direction = Direction.valueOf(pDirection);</span>
+
+<span class="nc" id="L87">        return Position.From(Integer.parseInt(xCoordinate), Integer.parseInt(yCoordinate), direction);</span>
+    }
+
+    private static Command[] DecodeCommands(String pCommands){
+<span class="nc" id="L91">        Command[] commandList = new Command[pCommands.length()];</span>
+<span class="nc" id="L92">        String[] commands = pCommands.split(&quot;&quot;);</span>
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        for(int i = 0; i &lt; commands.length; i++){</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            boolean unknownCommand = !&quot;MRL&quot;.contains(commands[i]);</span>
+
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if(unknownCommand){</span>
+<span class="nc" id="L98">                System.out.println(&quot;UnknownCommand: The Rover does not understand command &quot; + commands[i] + &quot;. Please look at challenge pdf.&quot;);</span>
+<span class="nc" id="L99">                System.out.println(&quot;System Exit(0)&quot;);</span>
+<span class="nc" id="L100">                System.exit(0);</span>
+            }
+<span class="nc" id="L102">            commandList[i] = Command.valueOf(commands[i]);</span>
+        }
+
+<span class="nc" id="L105">        return commandList;</span>
+    }
+
+    public static boolean isInteger(String str)  
+    {  
+        try  
+        {  
+<span class="nc" id="L112">            Integer.parseInt(str);  </span>
+        }  
+<span class="nc" id="L114">        catch(NumberFormatException e)  </span>
+        {  
+<span class="nc" id="L116">            return false;  </span>
+<span class="nc" id="L117">        }  </span>
+<span class="nc" id="L118">        return true;  </span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

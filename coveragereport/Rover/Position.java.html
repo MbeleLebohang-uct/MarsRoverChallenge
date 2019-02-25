@@ -46,11 +46,11 @@ import RoverTypes.*;
 <span class="fc" id="L46">                break;</span>
 
             case R:
-<span class="fc" id="L49">                RotateRight();</span>
+<span class="fc" id="L49">                Rotate(command);</span>
 <span class="fc" id="L50">                break;</span>
 
             case L:
-<span class="fc" id="L53">                RotateLeft();</span>
+<span class="fc" id="L53">                Rotate(command);</span>
                 break;
         }
 <span class="fc" id="L56">        return Position.From(coordinatesValue.getxCoordinate(), coordinatesValue.getyCoordinate(), direction);</span>
@@ -125,50 +125,26 @@ import RoverTypes.*;
 <span class="fc" id="L125">    }</span>
 
     /**
-     * Helper method to rotate 90 degrees to the right
+     * Helper method to rotate 90 degrees to the right or left based on the given command
      * @return Void
      */
-    private void RotateRight(){
-<span class="pc bpc" id="L132" title="2 of 5 branches missed.">        switch (direction){</span>
+    private void Rotate(Command command){
+<span class="pc bpc" id="L132" title="1 of 5 branches missed.">        switch (direction){</span>
             case S:
-<span class="fc" id="L134">                direction = Direction.W;</span>
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">                direction = command.equals(Command.R) ? Direction.W : Direction.E;</span>
 <span class="fc" id="L135">                break;</span>
 
             case N:
-<span class="fc" id="L138">                direction = Direction.E;</span>
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">                direction = command.equals(Command.R) ? Direction.E : Direction.W;</span>
 <span class="fc" id="L139">                break;</span>
             
             case E:
-<span class="fc" id="L142">                direction = Direction.S;</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">                direction = command.equals(Command.R) ? Direction.S : Direction.N;</span>
 <span class="fc" id="L143">                break;</span>
             case W:
-<span class="nc" id="L145">                direction = Direction.N;</span>
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">                direction = command.equals(Command.R) ? Direction.N : Direction.S;</span>
                 break;
         }
 <span class="fc" id="L148">    }</span>
-
-    /**
-     * Helper method to rotate 90 degrees to the left
-     * @return Void
-     */
-    private void RotateLeft(){
-<span class="pc bpc" id="L155" title="3 of 5 branches missed.">        switch (direction){</span>
-            case S:
-<span class="nc" id="L157">                direction = Direction.E;</span>
-<span class="nc" id="L158">                break;</span>
-
-            case N:
-<span class="nc" id="L161">                direction = Direction.W;</span>
-<span class="nc" id="L162">                break;</span>
-            
-            case E:
-<span class="fc" id="L165">                direction = Direction.N;</span>
-<span class="fc" id="L166">                break;</span>
-
-            case W:
-<span class="fc" id="L169">                direction = Direction.S;</span>
-                break;
-        }
-<span class="fc" id="L172">    }</span>
  }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

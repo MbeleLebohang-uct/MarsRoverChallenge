@@ -23,10 +23,22 @@ public class Rover {
      * @return the Rover
      */
     public static Rover From(int xCoordinate, int yCoordinate, Direction direction, int xDimension, int yDimension){
-<span class="fc" id="L26">        Position roverPosition = Position.From(xCoordinate, yCoordinate, direction);</span>
-<span class="fc" id="L27">        Surface roverSurface = Surface.From(xDimension, yDimension);</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        boolean xCoordinateOutOfBounds = xCoordinate &gt;= xDimension;</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        boolean yCoordinateOutOfBounds = yCoordinate &gt;= yDimension;</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if(xCoordinateOutOfBounds){</span>
+<span class="nc" id="L29">            System.out.println(&quot;xCoordinateOutOfBoundsException: The xCoordinate is outside the surveying surface. Setting xCoordinate to max possible value.&quot;);</span>
+<span class="nc" id="L30">            xCoordinate = xDimension - 1;</span>
+        }
 
-<span class="fc" id="L29">        return new Rover(roverPosition, roverSurface);</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if(yCoordinateOutOfBounds){</span>
+<span class="nc" id="L34">            System.out.println(&quot;yCoordinateOutOfBoundsException: The yCoordinate is outside the surveying surface. Setting yCoordinate to max possible value.&quot;);</span>
+<span class="nc" id="L35">            yCoordinate = yDimension - 1;</span>
+        }
+
+<span class="fc" id="L38">        Position roverPosition = Position.From(xCoordinate, yCoordinate, direction);</span>
+<span class="fc" id="L39">        Surface roverSurface = Surface.From(xDimension, yDimension);</span>
+
+<span class="fc" id="L41">        return new Rover(roverPosition, roverSurface);</span>
     }
 
     /**
@@ -34,7 +46,7 @@ public class Rover {
      * @return the Rover
      */
     public static Rover From(Position position, Surface surface){
-<span class="fc" id="L37">        return new Rover(position, surface);</span>
+<span class="fc" id="L49">        return Rover.From(position.getCurrentCoordinates().getxCoordinate(), position.getCurrentCoordinates().getyCoordinate(), position.getCurrentDirection(), surface.getxDimension(), surface.getyDimension());</span>
     }
 
     /**
@@ -42,28 +54,28 @@ public class Rover {
      * @return new position
      */
     public Position ExecuteCommands(Command[] commands){
-<span class="fc" id="L45">        System.out.println();</span>
-<span class="fc bfc" id="L46" title="All 2 branches covered.">        for(Command command : commands){</span>
-<span class="fc" id="L47">            position.Move(command, surface);</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        for(Command command : commands){</span>
+<span class="fc" id="L58">            position.Move(command, surface);</span>
+<span class="fc" id="L59">            System.out.println(&quot;Command: &quot; + command.toString() + &quot; - Position: &quot; + position.toString());</span>
         }
-<span class="fc" id="L49">        return this.position;</span>
+<span class="fc" id="L61">        return this.position;</span>
     }
 
     /**
      * @return the position
      */
     public Position getCurrentPosition() {
-<span class="nc" id="L56">        return position;</span>
+<span class="nc" id="L68">        return position;</span>
     }
 
     /**
      * @return the surface
      */
     public Surface getSurface() {
-<span class="nc" id="L63">        return surface;</span>
+<span class="nc" id="L75">        return surface;</span>
     }
     public boolean equals(Rover rover) {
-<span class="nc bnc" id="L66" title="All 4 branches missed.">        return position.equals(rover.getCurrentPosition()) &amp;&amp; surface.equals(rover.getSurface());</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">        return position.equals(rover.getCurrentPosition()) &amp;&amp; surface.equals(rover.getSurface());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
