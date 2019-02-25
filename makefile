@@ -37,13 +37,6 @@ all: Direction.class \
 	 Rover.class \
 	 RoverDriver.class \
 
-# Rules for executing the application
-POSITION = 0,0,E
-COMMANDS = M
-SURFACE = 4,4
-run:
-	java -cp $(BINDIR) RoverDriver -p $(POSITION) -c $(COMMANDS) -s $(SURFACE)
-
 # Rules for generating documentation
 doc:
 	javadoc -d $(DOCDIR) $(SRCDIR)/*.java $(SRCDIR)/ValueObjects/*.java $(SRCDIR)/Rover/*.java $(SRCDIR)/RoverTypes/*.java $(TESTDIR)/TestUtils.java
