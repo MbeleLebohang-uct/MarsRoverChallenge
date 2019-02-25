@@ -23,6 +23,18 @@ public class Rover {
      * @return the Rover
      */
     public static Rover From(int xCoordinate, int yCoordinate, Direction direction, int xDimension, int yDimension){
+        boolean xCoordinateOutOfBounds = xCoordinate >= xDimension;
+        boolean yCoordinateOutOfBounds = yCoordinate >= yDimension;
+        if(xCoordinateOutOfBounds){
+            System.out.println("xCoordinateOutOfBoundsException: The xCoordinate is outside the surveying surface. Setting xCoordinate to max possible value.");
+            xCoordinate = xDimension - 1;
+        }
+
+        if(yCoordinateOutOfBounds){
+            System.out.println("yCoordinateOutOfBoundsException: The yCoordinate is outside the surveying surface. Setting yCoordinate to max possible value.");
+            yCoordinate = yDimension - 1;
+        }
+
         Position roverPosition = Position.From(xCoordinate, yCoordinate, direction);
         Surface roverSurface = Surface.From(xDimension, yDimension);
 
@@ -34,7 +46,7 @@ public class Rover {
      * @return the Rover
      */
     public static Rover From(Position position, Surface surface){
-        return new Rover(position, surface);
+        return Rover.From(position.getCurrentCoordinates().getxCoordinate(), position.getCurrentCoordinates().getyCoordinate(), position.getCurrentDirection(), surface.getxDimension(), surface.getyDimension());
     }
 
     /**
